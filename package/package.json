@@ -1,0 +1,28 @@
+{
+  "name": "@codersrank/timeline",
+  "version": "0.9.8",
+  "description": "Codersrank Timeline Widget",
+  "main": "cjs/codersrank-timeline.js",
+  "module": "esm/codersrank-timeline.js",
+  "jsnext:main": "esm/codersrank-timeline.js",
+  "browser": "codersrank-timeline.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codersrank-org/timeline-widget.git"
+  },
+  "author": "CodersRank Ltd.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codersrank-org/timeline-widget/issues"
+  },
+  "homepage": "https://github.com/codersrank-org/timeline-widget#readme",
+  "keywords": [
+    "codersrank",
+    "work",
+    "experience",
+    "jobs",
+    "profile",
+    "cv",
+    "web component"
+  ]
+}
