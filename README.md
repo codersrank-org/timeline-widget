@@ -2,7 +2,7 @@
 
 <!-- DOCS_START -->
 
-Codersrank Timeline Widget is a web component that allows you easily integrate your work experience, portfolio or education information in a form of a timeline from your [CodersRank](https://codersrank.io) profile to your personal website:
+Codersrank Timeline Widget is a web component that allows you easily integrate your work experience or portfolio information in a form of a timeline from your [CodersRank](https://codersrank.io) profile to your personal website:
 
 <img src="preview.png" />
 
