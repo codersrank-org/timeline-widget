@@ -55,6 +55,11 @@ export const renderTooltip = (item, type) => {
     )})`;
   };
   const itemLogo = () => {
+    if (type === 'technologies') {
+      return `<img src="https://icon-widget.codersrank.io/api/${encodeURIComponent(
+        item.name,
+      )}">`;
+    }
     return type === 'workexperience'
       ? companyLogo(item.company, item.company_logo)
       : companyLogo(item.project_title, item.image);
@@ -65,6 +70,26 @@ export const renderTooltip = (item, type) => {
   const itemSubtitle = () => {
     return type === 'workexperience' ? item.title : item.role;
   };
+  if (type === 'technologies') {
+    // prettier-ignore
+    return /* html */`
+      <div class="codersrank-timeline-tooltip-item">
+        <div class="logo">
+          ${itemLogo()}
+        </div>
+        <div class="content">
+          <div class="title">
+            ${item.name}
+          </div>
+          <div class="details">
+            <div>${dates(true)}</div>
+          </div>
+        </div>
+      </div>
+      <div class="codersrank-timeline-tooltip-divider"></div>
+      ${item.items.map((subItem) => renderTooltip(subItem, subItem._type)).join('')}
+    `
+  }
   // prettier-ignore
   return /* html */`
     <div class="codersrank-timeline-tooltip-item">

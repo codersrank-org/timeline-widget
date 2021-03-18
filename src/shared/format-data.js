@@ -1,10 +1,68 @@
 import { differenceInMonths } from './difference-in-months';
 
-export const formatData = (items = []) => {
+export const formatData = (items = [], type) => {
   const rows = [];
   let startDate;
   let endDate;
   let totalCols;
+  const datesOverlap = (start1, end1, start2, end2) => {
+    if (start1 <= start2 && start2 <= end1) return true; // b starts in a
+    if (start1 <= end2 && end2 <= end1) return true; // b ends in a
+    if (start2 < start1 && end1 < end2) return true; // a in b
+    return false;
+  };
+  const techItems = [];
+  const addTechItem = (tech, start, end, item) => {
+    techItems.push({
+      name: tech,
+      start_date: start,
+      end_date: end,
+      items: [item],
+    });
+  };
+  const processTechItem = (tech, item) => {
+    const { start_date, end_date, is_current } = item;
+    const techStart = start_date ? new Date(start_date) : new Date();
+    const techEnd = end_date && !is_current ? new Date(end_date) : new Date();
+    const similarTechs = techItems.filter(
+      (t) => t.name.toLowerCase() === tech.toLowerCase(),
+    );
+    if (!similarTechs.length) {
+      addTechItem(tech, techStart, techEnd, item);
+    } else {
+      let overlap;
+      similarTechs.forEach((otherTech) => {
+        if (overlap) return;
+        const otherTechStart = otherTech.start_date
+          ? new Date(otherTech.start_date)
+          : new Date();
+        const otherTechEnd = otherTech.end_date
+          ? new Date(otherTech.end_date)
+          : new Date();
+        if (datesOverlap(techStart, techEnd, otherTechStart, otherTechEnd)) {
+          overlap = true;
+          /* eslint-disable */
+          otherTech.start_date = new Date(Math.min(techStart, otherTechStart));
+          otherTech.end_date = new Date(Math.max(techEnd, otherTechEnd));
+          /* eslint-enable */
+          otherTech.items.push(item);
+        }
+      });
+      if (!overlap) {
+        addTechItem(tech, techStart, techEnd, item);
+      }
+    }
+  };
+  if (type === 'technologies') {
+    items.forEach((item) => {
+      const techs = [...(item.highlighted_technologies || [])];
+      techs.forEach((tech) => {
+        processTechItem(tech, item);
+      });
+    });
+    // eslint-disable-next-line
+    items = techItems;
+  }
   const setStartDate = (d = '') => {
     startDate = new Date(d);
     startDate.setMonth(0, 1);

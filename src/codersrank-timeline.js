@@ -100,7 +100,7 @@ class CodersrankTimeline extends HTMLElement {
     this.render();
     fetchData(username, type)
       .then((items) => {
-        this.data = formatData(items);
+        this.data = formatData(items, type);
         this.state = STATE_SUCCESS;
         this.render();
       })
@@ -131,7 +131,9 @@ class CodersrankTimeline extends HTMLElement {
 
     this.tempDiv.innerHTML = `
       <div class="codersrank-timeline-tooltip">
-        ${tooltipText}
+        <div class="codersrank-timeline-tooltip-content">
+          ${tooltipText}
+        </div>
         <div class="codersrank-timeline-tooltip-angle"></div>
       </div>
     `;

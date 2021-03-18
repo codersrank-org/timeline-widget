@@ -46,11 +46,11 @@ As it is a web component the usage is pretty simple, just add widget HTML tag wi
 
 Widget supports following properties as HTML element attributes:
 
-| Name       | Type      | Default          | Description                                                        |
-| ---------- | --------- | ---------------- | ------------------------------------------------------------------ |
-| `username` | `string`  |                  | Your [CodersRank](https://codersrank.io) username                  |
-| `type`     | `string`  | `workexperience` | Specify which data to show. Can be `workexperience` or `portfolio` |
-| `branding` | `boolean` | `true`           | Displays "Powered by CodersRank" link                              |
+| Name       | Type      | Default          | Description                                                                        |
+| ---------- | --------- | ---------------- | ---------------------------------------------------------------------------------- |
+| `username` | `string`  |                  | Your [CodersRank](https://codersrank.io) username                                  |
+| `type`     | `string`  | `workexperience` | Specify which data to show. Can be `workexperience`, `portfolio` or `technologies` |
+| `branding` | `boolean` | `true`           | Displays "Powered by CodersRank" link                                              |
 
 For example:
 
@@ -73,8 +73,10 @@ There are following CSS Custom Properties are available:
 | --year-text-color             | currentColor                     |
 | --year-line-color             | currentColor                     |
 | --year-line-opacity           | 0.25                             |
-| --timeline-item-bg-color      | #72a0a8                          |
-| --timeline-item-text-color    | #fff                             |
+| --col-width                   | 24px                             |
+| --row-height                  | 36px                             |
+| --timeline-item-bg-color      | #f1f1f1                          |
+| --timeline-item-text-color    | inherit                          |
 | --timeline-item-font-size     | 12px                             |
 | --timeline-item-padding       | 4px 8px                          |
 | --timeline-item-border-radius | 4px                              |

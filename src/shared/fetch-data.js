@@ -7,6 +7,28 @@ export const fetchData = (username, type) => {
   let endpoint = 'work_experiences';
   if (type === 'portfolio') endpoint = 'projects';
   if (cache[endpoint][username]) return Promise.resolve(cache[endpoint][username]);
+  if (type === 'technologies') {
+    return Promise.all([
+      fetchData(username, 'portfolio'),
+      fetchData(username, 'workexperience'),
+    ])
+      .then(([projects, work_experiences]) => {
+        projects.forEach((item) => {
+          // eslint-disable-next-line
+          item._type = 'portfolio';
+        });
+        work_experiences.forEach((item) => {
+          // eslint-disable-next-line
+          item._type = 'workexperience';
+        });
+        return [...projects, ...work_experiences];
+      })
+      .catch((err) => {
+        // eslint-disable-next-line
+        console.error(err);
+        return Promise.reject(err);
+      });
+  }
 
   return fetch(`https://api.codersrank.io/v2/users/${username}/${endpoint}`, {
     method: 'GET',

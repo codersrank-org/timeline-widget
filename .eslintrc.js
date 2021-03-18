@@ -15,5 +15,6 @@ module.exports = {
     'object-curly-newline': ['off'],
     'arrow-body-style': ['off'],
     'prefer-destructuring': ['off'],
+    'no-underscore-dangle': ['off'],
   },
 };

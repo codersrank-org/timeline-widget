@@ -7,8 +7,10 @@
   --year-text-color: currentColor;
   --year-line-color: currentColor;
   --year-line-opacity: 0.25;
-  --timeline-item-bg-color: #72a0a8;
-  --timeline-item-text-color: #fff;
+  --col-width: 24px;
+  --row-height: 36px;
+  --timeline-item-bg-color: #f1f1f1;
+  --timeline-item-text-color: inherit;
   --timeline-item-font-size: 12px;
   --timeline-item-padding: 4px 8px;
   --timeline-item-border-radius: 4px;
@@ -121,6 +123,13 @@
       position: sticky;
       padding: var(--timeline-item-padding);
       left: 0;
+      display: flex;
+      align-items: center;
+      img {
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+      }
     }
   }
   &-tooltip {
@@ -132,13 +141,17 @@
     color: var(--tooltip-text-color);
     box-shadow: var(--tooltip-box-shadow);
     font-family: var(--font-family);
-    padding: var(--tooltip-padding);
     font-size: var(--tooltip-font-size, 14px);
     margin-top: -10px;
     width: var(--tooltip-width);
     max-width: 80vw;
     line-height: 1.5;
     z-index: 1000;
+    &-content {
+      max-height: 80vh;
+      overflow: auto;
+      padding: var(--tooltip-padding);
+    }
     &-angle {
       width: 0px;
       height: 0px;
@@ -159,6 +172,14 @@
       top: auto;
       transform: rotate(180deg);
     }
+    &-divider {
+      height: 1px;
+      background: rgba(0, 0, 0, 0.1);
+      margin: 16px 0;
+    }
+  }
+  &-tooltip-item + &-tooltip-item {
+    margin-top: 16px;
   }
   &-tooltip-item {
     display: flex;
