@@ -27,12 +27,14 @@ export const formatData = (items = [], type) => {
     const similarTechs = techItems.filter(
       (t) => t.name.toLowerCase() === tech.toLowerCase(),
     );
+
     if (!similarTechs.length) {
       addTechItem(tech, techStart, techEnd, item);
     } else {
       let overlap;
       similarTechs.forEach((otherTech) => {
         if (overlap) return;
+
         const otherTechStart = otherTech.start_date
           ? new Date(otherTech.start_date)
           : new Date();
@@ -54,6 +56,11 @@ export const formatData = (items = [], type) => {
     }
   };
   if (type === 'technologies') {
+    items.sort((a, b) => {
+      const aStart = a.start_date ? new Date(a.start_date) : new Date();
+      const bStart = b.start_date ? new Date(b.start_date) : new Date();
+      return aStart - bStart;
+    });
     items.forEach((item) => {
       const techs = [...(item.highlighted_technologies || [])];
       techs.forEach((tech) => {
