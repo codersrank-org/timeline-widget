@@ -1,6 +1,6 @@
 {
   "name": "@codersrank/timeline",
-  "version": "0.9.8",
+  "version": "0.9.0",
   "description": "Codersrank Timeline Widget",
   "main": "cjs/codersrank-timeline.js",
   "module": "esm/codersrank-timeline.js",
