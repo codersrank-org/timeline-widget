@@ -39,7 +39,7 @@ In this case it is not required to register web component, it is already registe
 As it is a web component the usage is pretty simple, just add widget HTML tag with your [CodersRank](https://codersrank.io) username
 
 ```html
-<codersrank-timeline username="YOUR_USERNAME"></codersrank-timeline>
+<codersrank-timeline type="technologies" username="YOUR_USERNAME"></codersrank-timeline>
 ```
 
 ## Widget Attributes

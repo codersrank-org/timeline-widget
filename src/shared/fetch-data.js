@@ -38,8 +38,20 @@ export const fetchData = (username, type) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      cache[endpoint][username] = data.projects || data.work_experiences || [];
-      return data.projects || data.work_experiences || [];
+      let projects = [];
+      let workExperiences = [];
+      if (typeof data.projects !== 'undefined') {
+        projects = data.projects.filter((e) => {
+          return e.start_date !== '0001-01';
+        });
+      }
+      if (typeof data.work_experiences !== 'undefined') {
+        workExperiences = data.work_experiences.filter((e) => {
+          return e.start_date !== '0001-01';
+        });
+      }
+      cache[endpoint][username] = projects || workExperiences || [];
+      return projects || workExperiences || [];
     })
     .catch((err) => {
       // eslint-disable-next-line
