@@ -38,8 +38,8 @@ export const fetchData = (username, type) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      let projects = [];
-      let workExperiences = [];
+      let projects;
+      let workExperiences;
       if (typeof data.projects !== 'undefined') {
         projects = data.projects.filter((e) => {
           return e.start_date !== '0001-01';
