@@ -100,6 +100,7 @@ class CodersrankTimeline extends HTMLElement {
     this.render();
     fetchData(username, type)
       .then((items) => {
+        this.emitData(items);
         this.data = formatData(items, type);
         this.state = STATE_SUCCESS;
         this.render();
@@ -189,6 +190,13 @@ class CodersrankTimeline extends HTMLElement {
       itemEl = parentEl;
     }
     if (itemEl) this.showTooltip(itemEl.getAttribute('data-id'));
+  }
+
+  emitData(items = []) {
+    const event = new CustomEvent('data', {
+      detail: { items },
+    });
+    this.dispatchEvent(event);
   }
 
   attachEvents() {
